@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:todo_app/list.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:todo_app/list.dart';
+import 'package:todo_app/ongoing_list.dart';
+import 'package:todo_app/login.dart';
 import 'firebase_options.dart';
 
 void main() async{
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
             return Listview();
           }
           else{
-            return const MyHomePage(title: 'Slot Management System');
+            // return const MyHomePage(title: 'Slot Management System');
+            return const Login();
           }
         }
       ),
@@ -54,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var passwordctr=TextEditingController();
   var usernamectr = TextEditingController();
   var confirmPasswordctr = TextEditingController();
+  bool _isObscure = true;
 
   // register() async{
   //   await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailctr.text.trim(), password: passwordctr.text.trim());
@@ -127,7 +130,7 @@ void showError(String message) {
       appBar: AppBar(
         backgroundColor: Colors.purple,
         title: Text(widget.title),
-        leading: Icon(Icons.person),
+        leading: Image.asset("assets/image/logo.png"),
         
       ),
       backgroundColor: Colors.amber,
@@ -139,6 +142,8 @@ void showError(String message) {
             mainAxisAlignment: MainAxisAlignment.center,
             
             children: [
+              Text("REGISTER"),
+              SizedBox(height: 40,),
               
               TextField(
                 controller: emailctr,
@@ -168,8 +173,20 @@ void showError(String message) {
               SizedBox(height: 20,),
               TextField(
                 controller: passwordctr,
+                 obscureText: _isObscure, 
                 decoration: InputDecoration(
                   prefix: Icon(Icons.password),
+                  suffixIcon: IconButton(
+                      icon: Icon(
+                        _isObscure ? Icons.visibility_off : Icons.visibility,
+                        color: const Color.fromARGB(255, 14, 14, 14),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                  ),
                   label: Text("Password"),
                   hintText: "Enter your Password",
                   border: OutlineInputBorder(
@@ -180,9 +197,21 @@ void showError(String message) {
               ),
               SizedBox(height: 20,),
               TextField(
-                controller: confirmPasswordctr   ,
+                controller: confirmPasswordctr,
+                 obscureText: _isObscure, 
                 decoration: InputDecoration(
                   prefix: Icon(Icons.password),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _isObscure ? Icons.visibility_off : Icons.visibility,
+                      color: const Color.fromARGB(255, 15, 15, 15),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _isObscure = !_isObscure;
+                      });
+                    },
+                  ),
                   label: Text("Re-type password"),
                   hintText: "Enter same password",
                   border: OutlineInputBorder(
@@ -192,11 +221,31 @@ void showError(String message) {
                 ),
               ),
               SizedBox(height: 20,),
+               
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  );
+                },
+                child: Text(
+                  "Already have Account. Login",
+                  style: TextStyle(
+                    color: Colors.deepPurple,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+              SizedBox(height: 20,),
               ElevatedButton(onPressed: register
               // (){
               //   Navigator.push(context, MaterialPageRoute(builder: (context)=>Listview()),);
               // } 
-              , child: Text("Register"))
+              , child: Text("Register",
+              style: TextStyle(color: Colors.purple,
+              ),)),
+              
             ],
           ),
         ),
