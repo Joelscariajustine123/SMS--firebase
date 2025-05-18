@@ -196,19 +196,19 @@ class _ListviewState extends State<Listview> {
               child: Text('Student $index',
                   style: const TextStyle(color: Colors.white, fontSize: 16)),
             ),
-            _actionButton("Edit"),
+            _actionButton(text: 'Edit'),
             const SizedBox(width: 8),
-            _actionButton("Delete"),
+            _actionButton(text: 'Delete'),
           ],
         ),
       );
 
-  Widget _actionButton(String text) => ElevatedButton(
+  Widget _actionButton({String? text,void Function()? onPressed}) => ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
           foregroundColor: Colors.purple,
         ),
-        onPressed: () {},
-        child: Text(text),
+        onPressed: onPressed,
+        child: Text(text??''),
       );
 }

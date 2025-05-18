@@ -11,8 +11,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-   var passwordctr=TextEditingController();
-  var emailctr = TextEditingController();
+   var passwordctr=TextEditingController(text:"a@123456");
+  var emailctr = TextEditingController( text: "joelscaria2002@gmail.com");
   bool _isObscure = true;
   login() async{
    try{
