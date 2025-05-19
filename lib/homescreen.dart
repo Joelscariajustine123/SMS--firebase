@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_app/add_course.dart';
 import 'package:todo_app/add_project_details.dart';
+import 'package:todo_app/complete_students.dart';
 import 'package:todo_app/ongoing_list.dart'; // your Listview widget
 import 'package:todo_app/register_student.dart';
 import 'login.dart';   // your Login widget
@@ -48,7 +49,14 @@ class _HomescreenState extends State<Homescreen> {
             );
           },
         ),
-        DashboardItem("Completed\nStudents", () {}),
+        DashboardItem("Completed\nStudents",
+        () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const CompleteStudents()),
+            );
+          },
+        ),
         DashboardItem("Project\nDetails", () {}),
         DashboardItem("Courses", () {}),
         DashboardItem("Students\nper Course", () {}),
