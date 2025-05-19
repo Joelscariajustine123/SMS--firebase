@@ -216,17 +216,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:todo_app/add_project_details.dart';
 import 'homescreen.dart';   // your dashboard screen
 import 'login.dart';       // your login screen
 
-class Listview extends StatefulWidget {
-  const Listview({super.key});
+class OngoingList extends StatefulWidget {
+  const OngoingList({super.key});
 
   @override
-  State<Listview> createState() => _ListviewState();
+  State<OngoingList> createState() => _ListviewState();
 }
 
-class _ListviewState extends State<Listview> {
+class _ListviewState extends State<OngoingList> {
   Future<void> _logout() async {
     await FirebaseAuth.instance.signOut();
     if (mounted) {
@@ -323,9 +324,23 @@ class _ListviewState extends State<Listview> {
               child: Text('Student $index',
                   style: const TextStyle(color: Colors.white, fontSize: 16)),
             ),
-            _actionButton(text: 'Edit'),
+            _actionButton(
+  text: 'Edit',
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const AddProjectDetails()),
+    );
+  },
+),
+
             const SizedBox(width: 8),
-            _actionButton(text: 'Delete'),
+            _actionButton(text: 'Delete',onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const Homescreen()),
+    );
+  },),
           ],
         ),
       );

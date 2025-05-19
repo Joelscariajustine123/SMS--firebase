@@ -224,7 +224,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                 hintText: "Enter Gcard Number",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.deepPurpleAccent),
+                  borderSide: BorderSide(color: Colors.purple),
                 ),
               ),
             ),
@@ -236,7 +236,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                 hintText: "Enter Course of Student",
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.deepPurpleAccent),
+                  borderSide: BorderSide(color: Colors.purple),
                 ),
               ),
             ),
@@ -260,7 +260,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                 hintText: 'Select name of Teacher',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.deepPurpleAccent),
+                  borderSide: BorderSide(color: Colors.purple),
                 ),
               ),
             ),
@@ -278,7 +278,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                     hintText: "Select start date",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.deepPurpleAccent),
+                      borderSide: BorderSide(color: Colors.purple),
                     ),
                     suffixIcon: Icon(Icons.calendar_today),
                   ),
@@ -301,7 +301,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                     hintText: "Select end date",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: Colors.deepPurpleAccent),
+                      borderSide: BorderSide(color: Colors.purple),
                     ),
                     suffixIcon: Icon(Icons.calendar_today),
                   ),
@@ -320,7 +320,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: Colors.deepPurple),
+                    color: Colors.purple),
               ),
             ),
             SizedBox(height: 10),
@@ -350,9 +350,10 @@ class _RegisterStudentState extends State<RegisterStudent> {
                   });
                 });
               },
-              child: Text("Register Student"),
+              child: Text("Register Student",
+              style: TextStyle(color: Colors.amber),),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.deepPurple,
+                backgroundColor: Colors.purple,
                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                 textStyle: TextStyle(fontSize: 18),
               ),

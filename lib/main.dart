@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:todo_app/list.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:todo_app/homescreen.dart';
 import 'package:todo_app/ongoing_list.dart';
 import 'package:todo_app/login.dart';
 import 'firebase_options.dart';
@@ -26,18 +27,30 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
         canvasColor: Colors.blue,
       ),
-      home: StreamBuilder<User?>(
+       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData){
-            return Listview();
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasData) {
+            return const Homescreen(); // Go to dashboard if logged in
+          } else {
+            return const Login(); // Otherwise show login
           }
-          else{
-            // return const MyHomePage(title: 'Slot Management System');
-            return const Login();
-          }
-        }
+        },
       ),
+       //StreamBuilder<User?>(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.hasData){
+      //       return Homescreen();
+      //     }
+      //     else{
+      //       // return const MyHomePage(title: 'Slot Management System');
+      //       return const Login();
+      //     }
+      //   }
+      // ),
     );
   }
 }
@@ -106,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // Example:
     // await FirebaseFirestore.instance.collection('users').doc(FirebaseAuth.instance.currentUser!.uid).set({'username': username});
 
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => Listview()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => OngoingList()));
   } on FirebaseAuthException catch (e) {
     if (e.code == 'email-already-in-use') {
       showError("Email already in use");

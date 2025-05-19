@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/homescreen.dart';
 import 'package:todo_app/main.dart';
 
 class Login extends StatefulWidget {
@@ -14,14 +15,57 @@ class _LoginState extends State<Login> {
    var passwordctr=TextEditingController(text:"a@123456");
   var emailctr = TextEditingController( text: "joelscaria2002@gmail.com");
   bool _isObscure = true;
-  login() async{
-   try{
-     await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailctr.text.trim(), password: passwordctr.text.trim());
-   }on FirebaseAuthException catch(e){
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${e.message}')));
-   }
+//   login() async{
+//    try{
+//     setState(() {
+//       is_loading=true;
+//     });
+//      await FirebaseAuth.instance.signInWithEmailAndPassword(
+//   email: emailctr.text.trim(),
+//   password: passwordctr.text.trim(),
+// );
+//    }on FirebaseAuthException catch(e){
+//     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${e.message}')));
+//     print("The error is ${e.message}"); 
+//    }
+//    finally{
+//     setState(() {
+//       is_loading=false;
+//     });
+//    }
 
+//   }
+login() async {
+  try {
+    setState(() {
+      is_loading = true;
+    });
+
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailctr.text.trim(),
+      password: passwordctr.text.trim(),
+    );
+
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const Homescreen()),
+      );
+    }
+
+  } on FirebaseAuthException catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('${e.message}')),
+    );
+    print("The error is ${e.message}");
+  } finally {
+    setState(() {
+      is_loading = false;
+    });
   }
+}
+
+  bool is_loading=false;
   @override
   Widget build(BuildContext context) {
     
@@ -74,6 +118,7 @@ class _LoginState extends State<Login> {
           ),
         ),
         SizedBox(height: 20),
+        is_loading?CircularProgressIndicator():
         ElevatedButton(
           onPressed: login,
           style: ElevatedButton.styleFrom(
