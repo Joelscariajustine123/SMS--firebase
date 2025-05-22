@@ -4,6 +4,7 @@ import 'package:todo_app/add_course.dart';
 import 'package:todo_app/add_project_details.dart';
 import 'package:todo_app/complete_students.dart';
 import 'package:todo_app/ongoing_list.dart'; // your Listview widget
+import 'package:todo_app/project_details.dart';
 import 'package:todo_app/register_student.dart';
 import 'login.dart';   // your Login widget
 
@@ -57,7 +58,10 @@ class _HomescreenState extends State<Homescreen> {
             );
           },
         ),
-        DashboardItem("Project\nDetails", () {}),
+        DashboardItem("Project\nDetails", () {
+          Navigator.push(context,
+          MaterialPageRoute(builder: (_)=> const ProjectDetails()));
+        }),
         DashboardItem("Courses", () {}),
         DashboardItem("Students\nper Course", () {}),
         DashboardItem("Count per\nCourse", () {}),

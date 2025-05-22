@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // register() async{
   //   await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailctr.text.trim(), password: passwordctr.text.trim());
-  // }
+  // }       
   register() async {
   final email = emailctr.text.trim();
   final password = passwordctr.text.trim();

@@ -101,12 +101,22 @@ class _AddProjectDetailsState extends State<AddProjectDetails> {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
-            ElevatedButton(onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (_)=> Homescreen()));
-            }, child: Text("Add Projects",
-            style: TextStyle(color: Colors.amber),),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),)
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const Homescreen()),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.purple,
+                foregroundColor: Colors.amber, // sets text/icon color
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                textStyle: const TextStyle(fontSize: 16),
+              ),
+              child: const Text("Add Projects"),
+            ),
           ],
         ),
       ),
